@@ -1,4 +1,10 @@
 import pandas as pd
+
+'''
+参考资料：
+Python pandas用法：https://www.jianshu.com/p/840ba135df30
+pandas里面按条件筛选：https://www.jianshu.com/p/30254bc9fb40
+'''
 data = {'state': ['Ohio', 'Ohio', 'Ohio', 'Nevada', 'Nevada', 'Nevada'],
         'year': [2000, 2001, 2002, 2001, 2002, 2003],
         'pop': [1.5, 1.7, 3.6, 2.4, 2.9, 3.2]}
@@ -26,5 +32,11 @@ two   2001    Ohio  1.7
 four  2001  Nevada  2.4
 '''
 
-
+# 多条件筛选，一定要加括号
+df_2001_nevada = df.loc[(df['year'] == 2001) & (df['state'] == 'Nevada')]
+'''
+print(df_2001_nevada)
+      year   state  pop
+four  2001  Nevada  2.4
+'''
 
