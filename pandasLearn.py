@@ -23,6 +23,10 @@ five   2002  Nevada  2.9
 six    2003  Nevada  3.2
 '''
 
+# 筛选index中的column的值，df.at[index, column]
+df_filter = df.at['one', 'year']
+print(df_filter)
+
 # 筛选出条件的DataFrame
 df_2001 = df.loc[df['year'] == 2001]
 '''
@@ -40,3 +44,16 @@ print(df_2001_nevada)
 four  2001  Nevada  2.4
 '''
 
+# 删除列
+del df['state']
+del df['pop']
+print(df)
+'''
+       year
+one    2000
+two    2001
+three  2002
+four   2001
+five   2002
+six    2003
+'''
