@@ -23,9 +23,25 @@ five   2002  Nevada  2.9
 six    2003  Nevada  3.2
 '''
 
+# 将df按照year这一列排序
+df_sorted = df.sort_values(by='year', ascending=True)
+print(df_sorted)
+'''
+       year   state  pop
+one    2000    Ohio  1.5
+two    2001    Ohio  1.7
+four   2001  Nevada  2.4
+three  2002    Ohio  3.6
+five   2002  Nevada  2.9
+six    2003  Nevada  3.2
+'''
+
 # 筛选index中的column的值，df.at[index, column]
 df_filter = df.at['one', 'year']
 print(df_filter)
+'''
+2000
+'''
 
 # 筛选出条件的DataFrame
 df_2001 = df.loc[df['year'] == 2001]
