@@ -22,10 +22,38 @@ four   2001  Nevada  2.4
 five   2002  Nevada  2.9
 six    2003  Nevada  3.2
 '''
+# print(df)
+
+
+# 筛选两列
+df_sub = df[['year', 'state']]
+# print(df_sub)
+'''
+       year   state
+one    2000    Ohio
+two    2001    Ohio
+three  2002    Ohio
+four   2001  Nevada
+five   2002  Nevada
+six    2003  Nevada
+'''
+
+# 加列
+df_sub['new_col'] = {1, 2, 3, 4, 5, 6}
+# print(df_sub)
+'''
+       year   state  new_col
+one    2000    Ohio        1
+two    2001    Ohio        2
+three  2002    Ohio        3
+four   2001  Nevada        4
+five   2002  Nevada        5
+six    2003  Nevada        6
+'''
 
 # 将df按照year这一列排序
 df_sorted = df.sort_values(by='year', ascending=True)
-print(df_sorted)
+# print(df_sorted)
 '''
        year   state  pop
 one    2000    Ohio  1.5
@@ -38,7 +66,7 @@ six    2003  Nevada  3.2
 
 # 筛选index中的column的值，df.at[index, column]
 df_filter = df.at['one', 'year']
-print(df_filter)
+# print(df_filter)
 '''
 2000
 '''
@@ -63,7 +91,7 @@ four  2001  Nevada  2.4
 # 删除列
 del df['state']
 del df['pop']
-print(df)
+# print(df)
 '''
        year
 one    2000
@@ -73,3 +101,4 @@ four   2001
 five   2002
 six    2003
 '''
+
