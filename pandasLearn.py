@@ -11,7 +11,7 @@ data = {'state': ['Ohio', 'Ohio', 'Ohio', 'Nevada', 'Nevada', 'Nevada'],
 # 使用dict创建DataFrame
 df = pd.DataFrame(data, columns=['year', 'state', 'pop'],
                   index=['one', 'two', 'three', 'four', 'five', 'six'])
-
+# print(df)
 '''
 print(df)
        year   state  pop
@@ -23,7 +23,15 @@ five   2002  Nevada  2.9
 six    2003  Nevada  3.2
 '''
 # print(df)
-
+df_drop = df.drop(index=df.loc[((df['pop'] > 2) & (df['pop'] < 3))].index)
+print(df_drop)
+'''
+       year   state  pop
+one    2000    Ohio  1.5
+two    2001    Ohio  1.7
+three  2002    Ohio  3.6
+six    2003  Nevada  3.2
+'''
 
 # 筛选两列
 df_sub = df[['year', 'state']]
@@ -64,6 +72,60 @@ five   2002  Nevada  2.9
 six    2003  Nevada  3.2
 '''
 
+# 隔行相减
+df_sorted['shift_pop'] = df_sorted['pop'].shift(1)
+# df_sorted['shift_pop'].iloc[0] = df_sorted['pop'].iloc[0]
+# print(df_sorted)
+# 构造一个下移的行
+'''
+       year   state  pop  shift_pop
+one    2000    Ohio  1.5       NaN
+two    2001    Ohio  1.7       1.5
+four   2001  Nevada  2.4       1.7
+three  2002    Ohio  3.6       2.4
+five   2002  Nevada  2.9       3.6
+six    2003  Nevada  3.2       2.9
+'''
+df_sorted['pop'] = df_sorted['pop'] - df_sorted['shift_pop']
+del df_sorted['shift_pop']
+# print(df_sorted)
+# 相减，并删除temp行
+'''
+       year   state  pop
+one    2000    Ohio  NaN
+two    2001    Ohio  0.2
+four   2001  Nevada  0.7
+three  2002    Ohio  1.2
+five   2002  Nevada -0.7
+six    2003  Nevada  0.3
+'''
+# print(df_sorted)
+'''
+       year   state  pop
+one    2000    Ohio  NaN
+two    2001    Ohio  0.2
+four   2001  Nevada  0.7
+three  2002    Ohio  1.2
+five   2002  Nevada -0.7
+six    2003  Nevada  0.3
+'''
+
+# 改列名
+df_sorted = df_sorted.rename(columns={'pop': 'pop_newname'})
+# print(df_sorted)
+'''
+       year   state  pop_newname
+one    2000    Ohio          NaN
+two    2001    Ohio          0.2
+four   2001  Nevada          0.7
+three  2002    Ohio          1.2
+five   2002  Nevada         -0.7
+six    2003  Nevada          0.3
+'''
+
+df_sorted['pop_newname'].iloc[0] = 0
+# print(df_sorted)
+
 # 筛选index中的column的值，df.at[index, column]
 df_filter = df.at['one', 'year']
 # print(df_filter)
@@ -89,6 +151,7 @@ four  2001  Nevada  2.4
 '''
 
 # 删除列
+# del df['state', 'pop'] 不可以
 del df['state']
 del df['pop']
 # print(df)
