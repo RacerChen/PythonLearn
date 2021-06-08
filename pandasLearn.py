@@ -8,6 +8,7 @@ pandas里面按条件筛选：https://www.jianshu.com/p/30254bc9fb40
 data = {'state': ['Ohio', 'Ohio', 'Ohio', 'Nevada', 'Nevada', 'Nevada'],
         'year': [2000, 2001, 2002, 2001, 2002, 2003],
         'pop': [1.5, 1.7, 3.6, 2.4, 2.9, 3.2]}
+
 # 使用dict创建DataFrame
 df = pd.DataFrame(data, columns=['year', 'state', 'pop'],
                   index=['one', 'two', 'three', 'four', 'five', 'six'])
@@ -24,7 +25,7 @@ six    2003  Nevada  3.2
 '''
 # print(df)
 df_drop = df.drop(index=df.loc[((df['pop'] > 2) & (df['pop'] < 3))].index)
-print(df_drop)
+# print(df_drop)
 '''
        year   state  pop
 one    2000    Ohio  1.5
@@ -70,6 +71,18 @@ four   2001  Nevada  2.4
 three  2002    Ohio  3.6
 five   2002  Nevada  2.9
 six    2003  Nevada  3.2
+'''
+
+df_sorted['col_sub'] = df_sorted['pop'] - df_sorted['year']
+# print(df_sorted)
+'''
+       year   state  pop  col_sub
+one    2000    Ohio  1.5  -1998.5
+two    2001    Ohio  1.7  -1999.3
+four   2001  Nevada  2.4  -1998.6
+three  2002    Ohio  3.6  -1998.4
+five   2002  Nevada  2.9  -1999.1
+six    2003  Nevada  3.2  -1999.8
 '''
 
 # 隔行相减
@@ -123,6 +136,20 @@ five   2002  Nevada         -0.7
 six    2003  Nevada          0.3
 '''
 
+
+# 重新刷一列
+df_sorted['pop_newname'] = [1.0, 0.2, 1.2, 0.7, -0.7, 0.3]
+'''
+       year   state  pop_newname  col_sub
+one    2000    Ohio          1.0  -1998.5
+two    2001    Ohio          0.2  -1999.3
+four   2001  Nevada          1.2  -1998.6
+three  2002    Ohio          0.7  -1998.4
+five   2002  Nevada         -0.7  -1999.1
+six    2003  Nevada          0.3  -1999.8
+'''
+print(df_sorted)
+
 df_sorted['pop_newname'].iloc[0] = 0
 # print(df_sorted)
 
@@ -164,4 +191,5 @@ four   2001
 five   2002
 six    2003
 '''
+
 
