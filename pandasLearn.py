@@ -60,6 +60,11 @@ five   2002  Nevada        5
 six    2003  Nevada        6
 '''
 
+
+# 合并两个Dataframe
+df_append = df_sub.append(df_sub, ignore_index=True)
+print(df_append)
+
 # 将df按照year这一列排序
 df_sorted = df.sort_values(by='year', ascending=True)
 # print(df_sorted)
@@ -191,5 +196,6 @@ four   2001
 five   2002
 six    2003
 '''
+
 
 
