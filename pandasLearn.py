@@ -23,6 +23,15 @@ four   2001  Nevada  2.4
 five   2002  Nevada  2.9
 six    2003  Nevada  3.2
 '''
+
+# 根据条件修改标签 （用于标签离散化）
+df['pop_discrete'] = 'init'
+print(df)
+df.loc[df['pop'] > 3.0, 'pop_discrete'] = 'big'
+df.loc[(df['pop'] >= 1.0) & (df['pop'] <= 3.0), 'pop_discrete'] = 'middle'
+df.loc[df['pop'] < 1.0, 'pop_discrete'] = 'small'
+print(df)
+
 # print(df)
 df_drop = df.drop(index=df.loc[((df['pop'] > 2) & (df['pop'] < 3))].index)
 # print(df_drop)
@@ -63,7 +72,7 @@ six    2003  Nevada        6
 
 # 合并两个Dataframe
 df_append = df_sub.append(df_sub, ignore_index=True)
-print(df_append)
+# print(df_append)
 
 # 将df按照year这一列排序
 df_sorted = df.sort_values(by='year', ascending=True)
@@ -153,7 +162,7 @@ three  2002    Ohio          0.7  -1998.4
 five   2002  Nevada         -0.7  -1999.1
 six    2003  Nevada          0.3  -1999.8
 '''
-print(df_sorted)
+# print(df_sorted)
 
 df_sorted['pop_newname'].iloc[0] = 0
 # print(df_sorted)
