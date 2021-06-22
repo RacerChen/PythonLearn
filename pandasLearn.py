@@ -32,6 +32,8 @@ df.loc[(df['pop'] >= 1.0) & (df['pop'] <= 3.0), 'pop_discrete'] = 'middle'
 df.loc[df['pop'] < 1.0, 'pop_discrete'] = 'small'
 print(df)
 
+
+# 按条件删除
 # print(df)
 df_drop = df.drop(index=df.loc[((df['pop'] > 2) & (df['pop'] < 3))].index)
 # print(df_drop)
@@ -42,6 +44,13 @@ two    2001    Ohio  1.7
 three  2002    Ohio  3.6
 six    2003  Nevada  3.2
 '''
+
+
+# 判断df是否含有列
+if 'year' in df_drop:
+    print('Contians year')
+else:
+    print('No year')
 
 # 筛选两列
 df_sub = df[['year', 'state']]
