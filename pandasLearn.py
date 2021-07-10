@@ -20,7 +20,7 @@ one    2000    Ohio  1.5
 two    2001    Ohio  1.7
 three  2002    Ohio  3.6
 four   2001  Nevada  2.4
-five   2002  Nevada  2.9
+five   2002  Nevada  2.9i
 six    2003  Nevada  3.2
 '''
 
